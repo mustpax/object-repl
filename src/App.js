@@ -83,7 +83,7 @@ class App extends Component {
               <ReplOutput
                 error={block.error}
                 response={block.response}
-                uncollapseLevel={2}
+                uncollapseLevel={this.state.maxCollapseDepth}
               />
             </li>
           ))}
@@ -102,6 +102,9 @@ class App extends Component {
           min="0"
           max="10"
           value={this.state.maxCollapseDepth}
+          onChange={(e) =>
+            this.setState({ maxCollapseDepth: parseInt(e.target.value) })
+          }
         />
       </div>
     );

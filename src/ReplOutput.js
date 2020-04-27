@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function ReplOutput({ response, heapIndex, error, uncollapseLevel }) {
   uncollapseLevel = uncollapseLevel || 0;
 
   const [isCollapsed, setIsCollapsed] = useState(uncollapseLevel <= 0);
+
+  useEffect(() => {
+    setIsCollapsed(uncollapseLevel <= 0);
+  }, [uncollapseLevel]);
 
   if (error) {
     return (
