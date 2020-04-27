@@ -3,6 +3,11 @@
   flex-direction: column;
 }
 
+table,
+pre {
+  font-family: "Courier New", Courier, monospace;
+}
+
 .App form {
   display: flex;
 }
@@ -12,4 +17,18 @@
   font-size: 16px;
   margin: 5px;
   padding: 2px;
+}
+
+.App tbody {
+  vertical-align: top;
+}
+
+.primitive {
+  color: #858585;
+  margin-right: 2px;
+}
+
+.colon {
+  font-weight: bold;
+  color: orange;
 }

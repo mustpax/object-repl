@@ -15,7 +15,8 @@ function ReplOutput({ response, heapIndex }) {
   if (["string", "number", "boolean", "null"].includes(type)) {
     return (
       <pre>
-        {type}: {value}
+        <span className="primitive">[{type}]</span>
+        {value}
       </pre>
     );
   }
@@ -28,8 +29,9 @@ function ReplOutput({ response, heapIndex }) {
           <tbody>
             {value.map(([k, v], index) => (
               <tr key={index}>
-                <td>
+                <td style={{ display: "flex", alignItems: "center" }}>
                   <ReplOutput response={response} heapIndex={k} />
+                  <span className="colon">:</span>
                 </td>
                 <td>
                   <ReplOutput response={response} heapIndex={v} />

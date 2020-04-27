@@ -10,7 +10,11 @@ class App extends Component {
       blocks: [],
       command: JSON.stringify({ hello: "world" }), // TODO debug code
       command: JSON.stringify({ hello: "world", count: -1 }), // TODO debug code
-      command: JSON.stringify({ hello: "world", count: -1, obj: {} }), // TODO debug code
+      command: JSON.stringify({
+        hello: "world",
+        count: -1,
+        address: { zip: 94110 },
+      }), // TODO debug code
       // command: JSON.stringify("!testing testing!"), // TODO debug code
     };
   }
