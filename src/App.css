@@ -1,0 +1,15 @@
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.App form {
+  display: flex;
+}
+
+.App input {
+  flex: 1;
+  font-size: 16px;
+  margin: 5px;
+  padding: 2px;
+}
