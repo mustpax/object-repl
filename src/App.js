@@ -49,17 +49,24 @@ class App extends Component {
 
     try {
       let response = await this.run(command);
-      let block = this.state.blocks[blockIndex];
-      if (!block) {
-        // TODO handle error from race condition
-      }
       this.setState({
         blocks: this.state.blocks.map((block, index) =>
           index === blockIndex ? { ...block, response } : block
         ),
       });
-    } catch (e) {
-      // TODO display error
+    } catch (error) {
+      console.error("Error loading command", command, error.response);
+      let errMsg;
+      if (error.response && error.response.data) {
+        errMsg = error.response.data;
+      } else {
+        errMsg = true;
+      }
+      this.setState({
+        blocks: this.state.blocks.map((block, index) =>
+          index === blockIndex ? { ...block, error: errMsg } : block
+        ),
+      });
     }
   }
 
@@ -71,7 +78,7 @@ class App extends Component {
           {this.state.blocks.map((block, index) => (
             <li key={index}>
               <div>{block.command}</div>
-              <ReplOutput response={block.response} />
+              <ReplOutput error={block.error} response={block.response} />
             </li>
           ))}
         </ul>

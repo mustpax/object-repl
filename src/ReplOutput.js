@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 
-function ReplOutput({ response, heapIndex }) {
+function ReplOutput({ response, heapIndex, error }) {
   const [isCollapsed, setIsCollapsed] = useState(true);
+
+  if (error) {
+    return (
+      <pre className="error">Error {error === true ? "" : ": " + error}</pre>
+    );
+  }
 
   if (!response) {
     return <pre>. . .</pre>;

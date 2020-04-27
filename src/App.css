@@ -39,3 +39,17 @@ pre {
   border: none;
   cursor: pointer;
 }
+
+.repl {
+  list-style-type: ">";
+}
+
+.repl li {
+  padding-left: 10px;
+  border-bottom: 2px slod gray;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
