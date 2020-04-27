@@ -3,9 +3,9 @@
   flex-direction: column;
 }
 
-table,
-pre {
+.object {
   font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
 }
 
 .App form {
@@ -26,6 +26,7 @@ pre {
 .primitive {
   color: #858585;
   margin-right: 2px;
+  font-size: 14px;
 }
 
 .colon {
@@ -51,5 +52,9 @@ pre {
 
 .error {
   color: red;
+  font-weight: bold;
+}
+
+.bracket {
   font-weight: bold;
 }

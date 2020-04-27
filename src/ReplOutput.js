@@ -45,7 +45,7 @@ function ReplOutput({ response, heapIndex, error }) {
   if (type === "object" || type === "array") {
     if (isCollapsed) {
       return (
-        <div>
+        <div className="object">
           <button className="collapse" onClick={() => setIsCollapsed(false)}>
             ☞
           </button>
@@ -54,12 +54,12 @@ function ReplOutput({ response, heapIndex, error }) {
       );
     } else {
       return (
-        <div>
+        <div className="object">
           <button className="collapse" onClick={() => setIsCollapsed(true)}>
             ☟
           </button>
           <span className="primitive">[{type}]</span>
-          <h2>{type === "object" ? "{" : "["}</h2>
+          <div className="bracket">{type === "object" ? "{" : "["}</div>
           <table>
             <tbody>
               {value.map((item, index) => {
@@ -84,7 +84,7 @@ function ReplOutput({ response, heapIndex, error }) {
               })}
             </tbody>
           </table>
-          <h2>{type === "object" ? "}" : "]"}</h2>
+          <div className="bracket">{type === "object" ? "}" : "]"}</div>
         </div>
       );
     }

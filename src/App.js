@@ -9,14 +9,11 @@ class App extends Component {
     this.state = {
       contextId: 71717171,
       blocks: [],
-      command: JSON.stringify({ hello: "world" }), // TODO debug code
-      command: JSON.stringify({ hello: "world", count: -1 }), // TODO debug code
       command: JSON.stringify({
-        hello: "world",
-        count: -1,
+        name: "Moose",
+        likes: ["puzzles", "meditation", "quiet"],
         address: { zip: 94110 },
       }), // TODO debug code
-      // command: JSON.stringify("!testing testing!"), // TODO debug code
     };
   }
 
