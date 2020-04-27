@@ -45,7 +45,7 @@ function ReplOutput({ response, heapIndex, error, uncollapseLevel }) {
     );
   }
 
-  if (["string", "number", "boolean", "null"].includes(type)) {
+  if (["string", "number", "boolean"].includes(type)) {
     let richImage = null;
     let media = null;
 
