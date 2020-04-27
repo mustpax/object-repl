@@ -1,9 +1,5 @@
-.App {
-  display: flex;
-  flex-direction: column;
-}
-
-.object {
+.object,
+.command {
   font-family: "Courier New", Courier, monospace;
   font-size: 14px;
 }
@@ -61,4 +57,20 @@
 
 pre {
   margin: 0;
+}
+
+.config {
+  border: 2px solid gray;
+  float: right;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.config h2 {
+  margin: 0;
+}
+
+.clear {
+  clear: both;
 }

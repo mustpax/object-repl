@@ -75,11 +75,27 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Repl</h1>
+        <div className="config">
+          <h2>Config</h2>
+          <div className="control">
+            <span>Auto-expand depth: </span>
+
+            <input
+              type="number"
+              min="0"
+              max="10"
+              value={this.state.maxCollapseDepth}
+              onChange={(e) =>
+                this.setState({ maxCollapseDepth: parseInt(e.target.value) })
+              }
+            />
+          </div>
+        </div>
+        <h1>Object Repl</h1>
         <ul className="repl">
           {this.state.blocks.map((block, index) => (
             <li key={index}>
-              <pre>{block.command}</pre>
+              <div className="command">{block.command}</div>
               <ReplOutput
                 error={block.error}
                 response={block.response}
@@ -97,15 +113,7 @@ class App extends Component {
           />
         </form>
 
-        <input
-          type="number"
-          min="0"
-          max="10"
-          value={this.state.maxCollapseDepth}
-          onChange={(e) =>
-            this.setState({ maxCollapseDepth: parseInt(e.target.value) })
-          }
-        />
+        <div className="clear"></div>
       </div>
     );
   }
