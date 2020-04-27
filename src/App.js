@@ -20,6 +20,7 @@ class App extends Component {
             long: "California",
           },
         },
+        profile: "https://media.giphy.com/media/cJSdHSJ4yhmltD9epc/giphy.gif",
       }), // TODO debug code
     };
   }

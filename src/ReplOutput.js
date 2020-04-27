@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
+
+function isImg(str) {
+  let regex = /^https?:\/\/.+\/.+\.(jpe?g|gif|png)$/i;
+  return !!regex.exec(str);
+}
 
 function ReplOutput({ response, heapIndex, error, uncollapseLevel }) {
   uncollapseLevel = uncollapseLevel || 0;
 
   const [isCollapsed, setIsCollapsed] = useState(uncollapseLevel <= 0);
+  const [showMedia, setShowMedia] = useState(false);
 
   useEffect(() => {
     setIsCollapsed(uncollapseLevel <= 0);
@@ -40,11 +46,25 @@ function ReplOutput({ response, heapIndex, error, uncollapseLevel }) {
   }
 
   if (["string", "number", "boolean", "null"].includes(type)) {
+    let richImage = null;
+    let media = null;
+
+    if (type === "string" && isImg(value)) {
+      richImage = <button onClick={() => setShowMedia(!showMedia)}>🖼</button>;
+      media = showMedia ? (
+        <img alt="auto generated" src={value} width="200" />
+      ) : null;
+    }
+
     return (
-      <pre>
-        <PrimitiveLabel />
-        {value}
-      </pre>
+      <Fragment>
+        <pre>
+          <PrimitiveLabel />
+          {value}
+          {richImage}
+        </pre>
+        {media}
+      </Fragment>
     );
   }
 
