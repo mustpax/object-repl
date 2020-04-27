@@ -72,7 +72,7 @@ class App extends Component {
         <ul className="repl">
           {this.state.blocks.map((block, index) => (
             <li key={index}>
-              <div>{block.command}</div>
+              <pre>{block.command}</pre>
               <ReplOutput error={block.error} response={block.response} />
             </li>
           ))}
