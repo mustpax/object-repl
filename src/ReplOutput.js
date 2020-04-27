@@ -23,14 +23,22 @@ function ReplOutput({ response, heapIndex }) {
   if (type === "object") {
     return (
       <div>
+        <h2>{"{"}</h2>
         <table>
-          {value.map(([k, v]) => (
-            <tr>
-              <td>{k}</td>
-              <td>{v}</td>
-            </tr>
-          ))}
+          <tbody>
+            {value.map(([k, v], index) => (
+              <tr key={index}>
+                <td>
+                  <ReplOutput response={response} heapIndex={k} />
+                </td>
+                <td>
+                  <ReplOutput response={response} heapIndex={v} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
+        <h2>{"}"}</h2>
       </div>
     );
   }

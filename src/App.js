@@ -9,7 +9,8 @@ class App extends Component {
     this.state = {
       blocks: [],
       command: JSON.stringify({ hello: "world" }), // TODO debug code
-      // command: JSON.stringify({ hello: "world", count: -1 }), // TODO debug code
+      command: JSON.stringify({ hello: "world", count: -1 }), // TODO debug code
+      command: JSON.stringify({ hello: "world", count: -1, obj: {} }), // TODO debug code
       // command: JSON.stringify("!testing testing!"), // TODO debug code
     };
   }
@@ -30,6 +31,8 @@ class App extends Component {
       event.preventDefault();
     }
     const { command, blocks } = this.state;
+    // Remember location in blocks array in case the user submits multiple entries
+    // before server has responded
     let blockIndex = blocks.length;
     this.setState({
       blocks: blocks.concat({
