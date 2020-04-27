@@ -14,10 +14,15 @@ function ReplOutput({ response, heapIndex }) {
   }
 
   const { type, value } = current;
+
+  function PrimitiveLabel() {
+    return <span className="primitive">[{type}]</span>;
+  }
+
   if (["null", "undefined"].includes(type)) {
     return (
       <pre>
-        <span className="primitive">[{type}]</span>
+        <PrimitiveLabel />
       </pre>
     );
   }
@@ -25,7 +30,7 @@ function ReplOutput({ response, heapIndex }) {
   if (["string", "number", "boolean", "null"].includes(type)) {
     return (
       <pre>
-        <span className="primitive">[{type}]</span>
+        <PrimitiveLabel />
         {value}
       </pre>
     );
@@ -35,15 +40,19 @@ function ReplOutput({ response, heapIndex }) {
     if (isCollapsed) {
       return (
         <div>
-          <button className="collapse">☞</button>
-          Object
+          <button className="collapse" onClick={() => setIsCollapsed(false)}>
+            ☞
+          </button>
+          <span className="primitive">[{type}]</span>
         </div>
       );
     } else {
       return (
         <div>
-          <button className="collapse">☟</button>
-          Object
+          <button className="collapse" onClick={() => setIsCollapsed(true)}>
+            ☟
+          </button>
+          <span className="primitive">[{type}]</span>
           <h2>{"{"}</h2>
           <table>
             <tbody>
