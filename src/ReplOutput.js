@@ -5,7 +5,7 @@ function ReplOutput({ response, heapIndex, error }) {
 
   if (error) {
     return (
-      <pre className="error">Error {error === true ? "" : ": " + error}</pre>
+      <pre className="error">Error {error === "" ? "" : ": " + error}</pre>
     );
   }
 
@@ -42,7 +42,7 @@ function ReplOutput({ response, heapIndex, error }) {
     );
   }
 
-  if (type === "object") {
+  if (type === "object" || type === "array") {
     if (isCollapsed) {
       return (
         <div>
@@ -59,23 +59,32 @@ function ReplOutput({ response, heapIndex, error }) {
             ☟
           </button>
           <span className="primitive">[{type}]</span>
-          <h2>{"{"}</h2>
+          <h2>{type === "object" ? "{" : "["}</h2>
           <table>
             <tbody>
-              {value.map(([k, v], index) => (
-                <tr key={index}>
-                  <td style={{ display: "flex", alignItems: "center" }}>
-                    <ReplOutput response={response} heapIndex={k} />
-                    <span className="colon">:</span>
-                  </td>
-                  <td>
-                    <ReplOutput response={response} heapIndex={v} />
-                  </td>
-                </tr>
-              ))}
+              {value.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td style={{ display: "flex", alignItems: "center" }}>
+                      {type === "object" ? (
+                        <ReplOutput response={response} heapIndex={item[0]} />
+                      ) : (
+                        index
+                      )}
+                      <span className="colon">:</span>
+                    </td>
+                    <td>
+                      <ReplOutput
+                        response={response}
+                        heapIndex={type === "object" ? item[1] : item}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
-          <h2>{"}"}</h2>
+          <h2>{type === "object" ? "}" : "]"}</h2>
         </div>
       );
     }

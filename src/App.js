@@ -56,11 +56,9 @@ class App extends Component {
       });
     } catch (error) {
       console.error("Error loading command", command, error.response);
-      let errMsg;
+      let errMsg = "";
       if (error.response && error.response.data) {
         errMsg = error.response.data;
-      } else {
-        errMsg = true;
       }
       this.setState({
         blocks: this.state.blocks.map((block, index) =>
