@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReplOutput from "./ReplOutput";
 import axios from "axios";
 import "./App.css";
 
@@ -7,8 +8,12 @@ class App extends Component {
     super(props);
     this.state = {
       blocks: [],
-      command: JSON.stringify({ hello: "world", count: -1 }),
+      command: JSON.stringify({ hello: "world", count: -1 }), // TODO debug code
     };
+  }
+
+  componentDidMount() {
+    this.submit(); // TODO debug code
   }
 
   async run(code) {
@@ -19,7 +24,9 @@ class App extends Component {
   }
 
   async submit(event) {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     const { command, blocks } = this.state;
     let blockIndex = blocks.length;
     this.setState({
@@ -53,9 +60,7 @@ class App extends Component {
           {this.state.blocks.map((block) => (
             <li>
               <div>{block.command}</div>
-              <pre>
-                {block.response && JSON.stringify(block.response, null, 2)}
-              </pre>
+              <ReplOutput response={block.response} />
             </li>
           ))}
         </ul>
