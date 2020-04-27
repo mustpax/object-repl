@@ -7,6 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      contextId: 71717171,
       blocks: [],
       command: JSON.stringify({ hello: "world" }), // TODO debug code
       command: JSON.stringify({ hello: "world", count: -1 }), // TODO debug code
@@ -26,6 +27,7 @@ class App extends Component {
   async run(code) {
     let resp = await axios.post("https://flatval.masfrost.repl.co/", {
       code,
+      contextId: this.state.contextId,
     });
     return resp.data.result;
   }

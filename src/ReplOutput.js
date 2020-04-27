@@ -12,6 +12,14 @@ function ReplOutput({ response, heapIndex }) {
   }
 
   const { type, value } = current;
+  if (["null", "undefined"].includes(type)) {
+    return (
+      <pre>
+        <span className="primitive">[{type}]</span>
+      </pre>
+    );
+  }
+
   if (["string", "number", "boolean", "null"].includes(type)) {
     return (
       <pre>
