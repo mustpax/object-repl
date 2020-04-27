@@ -9,10 +9,17 @@ class App extends Component {
     this.state = {
       contextId: 71717171,
       blocks: [],
+      maxCollapseDepth: 1,
       command: JSON.stringify({
         name: "Moose",
         likes: ["puzzles", "meditation", "quiet"],
-        address: { zip: 94110 },
+        address: {
+          zip: 94110,
+          state: {
+            short: "CA",
+            long: "California",
+          },
+        },
       }), // TODO debug code
     };
   }
@@ -73,7 +80,11 @@ class App extends Component {
           {this.state.blocks.map((block, index) => (
             <li key={index}>
               <pre>{block.command}</pre>
-              <ReplOutput error={block.error} response={block.response} />
+              <ReplOutput
+                error={block.error}
+                response={block.response}
+                uncollapseLevel={2}
+              />
             </li>
           ))}
         </ul>
@@ -85,6 +96,13 @@ class App extends Component {
             onChange={(e) => this.setState({ command: e.target.value })}
           />
         </form>
+
+        <input
+          type="number"
+          min="0"
+          max="10"
+          value={this.state.maxCollapseDepth}
+        />
       </div>
     );
   }

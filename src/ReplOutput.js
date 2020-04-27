@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-function ReplOutput({ response, heapIndex, error }) {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+function ReplOutput({ response, heapIndex, error, uncollapseLevel }) {
+  uncollapseLevel = uncollapseLevel || 0;
+
+  const [isCollapsed, setIsCollapsed] = useState(uncollapseLevel <= 0);
 
   if (error) {
     return (
@@ -67,7 +69,11 @@ function ReplOutput({ response, heapIndex, error }) {
                   <tr key={index}>
                     <td style={{ display: "flex", alignItems: "center" }}>
                       {type === "object" ? (
-                        <ReplOutput response={response} heapIndex={item[0]} />
+                        <ReplOutput
+                          response={response}
+                          heapIndex={item[0]}
+                          uncollapseLevel={uncollapseLevel - 1}
+                        />
                       ) : (
                         index
                       )}
@@ -77,6 +83,7 @@ function ReplOutput({ response, heapIndex, error }) {
                       <ReplOutput
                         response={response}
                         heapIndex={type === "object" ? item[1] : item}
+                        uncollapseLevel={uncollapseLevel - 1}
                       />
                     </td>
                   </tr>
