@@ -8,7 +8,9 @@ class App extends Component {
     super(props);
     this.state = {
       blocks: [],
-      command: JSON.stringify({ hello: "world", count: -1 }), // TODO debug code
+      command: JSON.stringify({ hello: "world" }), // TODO debug code
+      // command: JSON.stringify({ hello: "world", count: -1 }), // TODO debug code
+      // command: JSON.stringify("!testing testing!"), // TODO debug code
     };
   }
 
@@ -57,8 +59,8 @@ class App extends Component {
       <div className="App">
         <h1>Repl</h1>
         <ul className="repl">
-          {this.state.blocks.map((block) => (
-            <li>
+          {this.state.blocks.map((block, index) => (
+            <li key={index}>
               <div>{block.command}</div>
               <ReplOutput response={block.response} />
             </li>
